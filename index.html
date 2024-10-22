@@ -7,35 +7,55 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* This ensures minimum full viewport height */
+            min-height: 200vh; /* This ensures minimum full viewport height */
             margin: 0;
+            position: relative; /* Added for absolute positioning context */
 
             /* Add background image */
             background-image: url('Background2.svg');
             background-repeat: no-repeat;
-            background-attachment: fixed;
             background-size: 100% auto; /* This maintains the image's aspect ratio */
             background-position: center top; /* Aligns image to top */
         
         }
-        .container {
+
+        .landing-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;  /* This makes children stack vertically */
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
-        h1 {
+
+        .bottom-signature {
+            position: absolute;
+            bottom: 60px;
+            right: 100px;
+            font-size: 14px;
             color: #333;
         }
+
+        h1 {
+            color: #333;
+            margin: 0;
+            display: block; /* Ensures elements are on their own line */
+            font-size: 48px;
+
+        }
         p {
-            color: #666;
+            color: #333;
+            margin-top: 20px; /* Adds space between h1 and p */
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="landing-section">
         <h1>Hi, this is Anna-Julia Storch</h1>
         <p>I'm the CEO and Cofounder of Dryft, an SF-based AI startup backed by Neo and General Catalyst.</p>
+    </div>
+    <div class="bottom-signature">
+        Anna-Julia Storch
     </div>
 </body>
 </html>
