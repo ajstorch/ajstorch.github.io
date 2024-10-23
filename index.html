@@ -7,14 +7,14 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            min-height: 200vh; /* This ensures minimum full viewport height */
-            margin: 0;
-            position: relative; /* Added for absolute positioning context */
+            min-height: 200vh; /* Makes page twice as tall as screen */
+            margin: 0; /* Removes all margins that default browser adds; standard practice */
+            position: relative; /* Sets up relative positioning context for children */
 
             /* Add background image */
             background-image: url('Background2.svg');
             background-repeat: no-repeat;
-            background-size: 100% auto; /* This maintains the image's aspect ratio */
+            background-size: cover; /* This maintains the image's aspect ratio */
             background-position: center top; /* Aligns image to top */
         
         }
@@ -30,41 +30,28 @@
 
         .bottom-signature {
             position: absolute;
-            bottom: 60px;
-            right: 100px;
-            font-size: 14px;
             color: #333;
+            bottom: clamp(20px, 5vh, 60px);    /* Min, preferred, max */
+            right: clamp(20px, 5vw, 100px);
+            font-size: clamp(14px, 1vw, 18px);
         }
 
         h1 {
             color: #333;
             margin: 0;
             display: block; /* Ensures elements are on their own line */
-            font-size: 48px;
+            font-size: clamp(32px, 4vw, 64px);
+            max-width: 90%;
 
         }
         p {
             color: #333;
             margin-top: 20px; /* Adds space between h1 and p */
+            font-size: clamp(16px, 1.5vw, 24px);
+            max-width: min(80ch, 90%);  /* Optimal reading length */
+            padding: 0 clamp(15px, 2vw, 30px);
         }
 
-        /* Mobile styling */
-        @media screen and (max-width: 768px) {
-            .bottom-signature {
-                bottom: 20px;  /* Mobile spacing */
-                right: 20px;   /* Mobile spacing */
-                font-size: 12px;
-            }
-
-            h1 {
-                font-size: 36px;
-                padding: 0 15px;
-            }
-            
-            p {
-                font-size: 14px;
-                padding: 0 20px;
-            }
     </style>
 </head>
 <body>
