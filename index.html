@@ -69,18 +69,53 @@
         h1 {
             color: #333;
             margin: 0;
-            display: block; /* Ensures elements are on their own line */
+            display: block;
             font-size: clamp(32px, 4vw, 64px);
             max-width: 90%;
-
+            border-right: .15em solid #333;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 29ch; /*Width */
+            animation: 
+                typing 3.5s steps(29, end),
+                blink-caret .75s step-end infinite;
         }
+
         p {
             color: #333;
             margin-top: 20px; /* Adds space between h1 and p */
             font-size: clamp(16px, 1.5vw, 24px);
             max-width: min(80ch, 90%);  /* Optimal reading length */
             padding: 0 clamp(15px, 2vw, 30px);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 3.5s; /* Starts after typing animation */
         }
+
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 29ch }
+        }
+
+        @keyframes blink-caret {
+        from, to { border-color: transparent }
+            50% { border-color: #333 }
+        }
+
+        /* Add this new style to remove the cursor after typing */
+        h1.typing-done {
+            border-right: none;
+        }
+
+        @keyframes fadeIn {
+        from { 
+            opacity: 0;
+        }
+        to { 
+            opacity: 1;
+        }   
+        }   
 
     </style>
 </head>
@@ -119,5 +154,11 @@
     <div class="bottom-signature">
         Anna-Julia Storch
     </div>
+
+    <script>
+        setTimeout(() => {
+            document.querySelector('h1').classList.add('typing-done');
+        }, 3500);
+    </script>
 </body>
 </html>
