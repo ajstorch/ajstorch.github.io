@@ -8,63 +8,24 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            min-height: 200vh; /* Makes page twice as tall as screen */
-            margin: 0; /* Removes all margins that default browser adds; standard practice */
-            position: relative; /* Sets up relative positioning context for children */
-
-            /* Add background image */
+            min-height: 200vh;
+            margin: 0;
+            position: relative;
             background-image: url('Background2.svg');
             background-repeat: no-repeat;
-            background-size: cover; /* This maintains the image's aspect ratio */
-            background-position: center top; /* Aligns image to top */
-        
+            background-size: cover;
+            background-position: center top;
         }
 
         .landing-section {
             height: 100vh;
             display: flex;
-            flex-direction: column;  /* This makes children stack vertically */
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
+            /* Changed from center to flex-start for left alignment */
+            align-items: flex-start;
+            /* Removed left padding from here since we're using margin on the line */
         }
-
-        .line {
-            width: clamp(300px, 50vw, 800px);
-            height: 1px;
-            background-color: #333;
-            margin: 60px;
-        }
-
-        .bottom-signature {
-            position: absolute;
-            color: #333;
-            bottom: clamp(20px, 5vh, 60px);    /* Min, preferred, max */
-            right: clamp(20px, 5vw, 100px);
-            font-size: clamp(14px, 4vw, 25px);
-        }
-
-        .social-links {
-            position: absolute;  /* Like bottom-signature */
-            bottom: clamp(20px, 5vh, 60px);    /* Same as bottom-signature */
-            left: clamp(20px, 5vw, 100px);     /* Mirror of bottom-signature's right */
-            display: flex;
-            gap: 20px;  /* Space between icons */
-            margin-top: 40px;
-        }
-
-        .social-icon {
-            width: 24px;  /* Adjust size as needed */
-            height: 24px;
-            opacity: 0.8;  /* Makes icons slightly transparent */
-            color: #333;  /* Same color as your text */
-            transition: opacity 0.3s ease; /* Smooth transition on hover */
-        }
-
-        .social-icon:hover {
-            opacity: 1;  /* Full opacity on hover */
-        }
-
 
         h1 {
             color: #333;
@@ -72,10 +33,10 @@
             display: block;
             font-size: clamp(32px, 4vw, 64px);
             max-width: 90%;
+            margin-left: clamp(80px, 10vw, 120px);
             border-right: .15em solid #333;
-            white-space: nowrap;
             overflow: hidden;
-            width: 29ch; /*Width */
+            width: 29ch;
             animation: 
                 typing 3.5s steps(29, end),
                 blink-caret .75s step-end infinite;
@@ -83,39 +44,129 @@
 
         p {
             color: #333;
-            margin-top: 20px; /* Adds space between h1 and p */
+            margin-top: 20px;
             font-size: clamp(16px, 1.5vw, 24px);
-            max-width: min(80ch, 90%);  /* Optimal reading length */
+            max-width: min(80ch, 90%);
             padding: 0 clamp(15px, 2vw, 30px);
+            margin-left: clamp(80px, 10vw, 120px);
             opacity: 0;
             animation: fadeIn 1s ease forwards;
-            animation-delay: 3.5s; /* Starts after typing animation */
+            animation-delay: 3.5s;
         }
 
+        .line {
+            width: clamp(300px, 50vw, 800px);
+            height: 1px;
+            background-color: #333;
+            width: clamp(400px, 60vw, 1000px); /* Increased width */
+            margin: 60px 0;
+                /* Added to match left alignment with project section */
+            margin-left: clamp(80px, 10vw, 120px);
+        }
 
+        /* Project Section Styles */
+        .project-section {
+            padding-left: clamp(80px, 10vw, 120px);
+            margin-top: 80px;
+        }
+
+        .project-title {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(48px, 5vw, 72px);
+            color: #333;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .line-number-container {
+            display: flex;
+            align-items: center;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .numbered-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #333;
+            max-width: 800px;
+        }
+
+        .number-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .vertical-divider {
+            width: 1px;
+            height: 20px;
+            background-color: #333;
+            margin: 0 10px;
+        }
+
+        .number {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .project-description {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: clamp(16px, 1.5vw, 24px);
+            max-width: 600px;
+            margin-top: 40px;
+        }
+
+        /* Social Links & Signature */
+        .bottom-signature {
+            position: absolute;
+            color: #333;
+            bottom: clamp(20px, 5vh, 60px);
+            right: clamp(20px, 5vw, 100px);
+            font-size: clamp(14px, 4vw, 25px);
+        }
+
+        .social-links {
+            position: absolute;
+            bottom: clamp(20px, 5vh, 60px);
+            left: clamp(20px, 5vw, 100px);
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+            color: #333;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover {
+            opacity: 1;
+        }
+
+        /* Animations */
         @keyframes typing {
             from { width: 0 }
             to { width: 29ch }
         }
 
         @keyframes blink-caret {
-        from, to { border-color: transparent }
+            from, to { border-color: transparent }
             50% { border-color: #333 }
         }
 
-        /* Add this new style to remove the cursor after typing */
+        @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 1 }
+        }
+
+        /* Cursor removal after typing */
         h1.typing-done {
             border-right: none;
         }
-
-        @keyframes fadeIn {
-        from { 
-            opacity: 0;
-        }
-        to { 
-            opacity: 1;
-        }   
-        }   
 
     </style>
 </head>
@@ -124,6 +175,19 @@
         <h1>Hi, this is Anna-Julia Storch</h1>
         <p>I'm the CEO and Cofounder of Dryft, an SF-based AI startup backed by Neo and General Catalyst.</p>
         <div class="line"></div>  <!-- Added horizontal line -->
+    </div>
+
+    <!-- Add this new section -->
+    <div class="project-section">
+        <h2 class="project-title">Clubhouse Chats</h2>
+        <div class="line-number-container">
+            <div class="numbered-line"></div>
+            <div class="number-section">
+                <div class="vertical-divider"></div>
+                <div class="number">01</div>
+            </div>
+        </div>
+        <p class="project-description">Group voice messages which string together into conversation-stories.</p>
     </div>
 
     <div class="social-links">
