@@ -22,9 +22,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            /* Changed from center to flex-start for left alignment */
             align-items: flex-start;
-            /* Removed left padding from here since we're using margin on the line */
+            text-align: center;
+            position: relative; /* Added to help with absolute positioning */
         }
 
         h1 {
@@ -33,13 +33,14 @@
             display: block;
             font-size: clamp(32px, 4vw, 64px);
             max-width: 90%;
-            margin-left: clamp(80px, 10vw, 120px);
             border-right: .15em solid #333;
             overflow: hidden;
             width: 29ch;
             animation: 
                 typing 3.5s steps(29, end),
                 blink-caret .75s step-end infinite;
+
+            align-self: center;
         }
 
         p {
@@ -52,16 +53,17 @@
             opacity: 0;
             animation: fadeIn 1s ease forwards;
             animation-delay: 3.5s;
+            align-self: center;
+            margin-left: 0;
         }
 
         .line {
-            width: clamp(300px, 50vw, 800px);
+            width: calc(100% - clamp(80px, 10vw, 120px) * 2);  /* Full width minus padding on both sides */
             height: 1px;
             background-color: #333;
-            width: clamp(400px, 60vw, 1000px); /* Increased width */
             margin: 60px 0;
-                /* Added to match left alignment with project section */
-            margin-left: clamp(80px, 10vw, 120px);
+            position: relative;  /* Changed from absolute */
+            align-self: center;  /* Center the line */
         }
 
         /* Project Section Styles */
