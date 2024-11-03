@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            min-height: 200vh;
+            min-height: 300vh;
             margin: 0;
             position: relative;
             background-image: url('Background2.svg');
@@ -17,34 +17,46 @@
             background-position: center top;
         }
 
+        .background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+      
+
         .landing-section {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             text-align: center;
             position: relative; /* Added to help with absolute positioning */
+            padding: 0 20px; /* Add padding for mobile */
         }
 
         h1 {
-            color: #333;
-            margin: 0;
-            display: block;
-            font-size: clamp(32px, 4vw, 64px);
-            max-width: 90%;
-            border-right: .15em solid #333;
-            overflow: hidden;
-            width: 29ch;
-            animation: 
-                typing 3.5s steps(29, end),
-                blink-caret .75s step-end infinite;
-
-            align-self: center;
+        color: #ffffff;
+        margin: 0;
+        display: inline-block;
+        font-size: clamp(32px, 4vw, 64px);
+        max-width: 100%;
+        border-right: .15em solid #ffffff;
+        white-space: nowrap;
+        overflow: hidden;
+        width: fit-content;
+        animation: typing 3.5s steps(29, end), blink-caret .75s step-end infinite;
+        align-self: center;
         }
 
         p {
-            color: #333;
+            color: #ffffff;
             margin-top: 20px;
             font-size: clamp(16px, 1.5vw, 24px);
             max-width: min(80ch, 90%);
@@ -58,40 +70,111 @@
         }
 
         .line {
-            width: calc(100% - clamp(80px, 10vw, 120px) * 2);  /* Full width minus padding on both sides */
-            height: 1px;
-            background-color: #333;
-            margin: 60px 0;
+            width: clamp(80px, 20vw, 10000px);
+            height: 0.5px;
+            background-color: #ffffff;
+            margin: 100px 0;
             position: relative;  /* Changed from absolute */
             align-self: center;  /* Center the line */
         }
 
-        /* Project Section Styles */
-        .project-section {
+        .project-sections-container {
+            display: flex;
+        }
+
+        .left-content {
+            flex: 1;
             padding-left: clamp(80px, 10vw, 120px);
-            margin-top: 80px;
+        }
+
+        .right-content {
+            flex: 1;
+            padding-right: clamp(80px, 10vw, 120px);
+            margin-top: 80px; /* Align with first title */
+        }
+
+        .section-item {
+            margin-bottom: 100px;
+        }
+
+        .images-wrapper {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Project Section Styles */
+        .page-container {
+            display: flex; /* Create two main columns */
+            padding: 80px clamp(80px, 10vw, 120px);
+            gap: 40px;
+        }
+
+        /* Left column with all text content */
+        .left-column {
+            flex: 1;
+        }
+
+        /* Right column with images */
+        .right-column {
+            flex: 1;
+        }
+
+        .text-section {
+            margin-bottom: 200px; /* Space between text sections */
+        }
+
+        .images-wrapper {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 80px; /* Keep images in view while scrolling */
+        }
+
+        .project-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+/* Keep your existing styles for project-title, line-number-container, etc. */
+
+        .project-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .project-title {
             font-family: 'Courier New', monospace;
-            font-size: clamp(48px, 5vw, 72px);
-            color: #333;
-            margin-bottom: 40px;
+            font-size: clamp(20px, 2vw, 50px);
+            color: #ffffff;
+            margin-bottom: 0px;
             line-height: 1.2;
         }
 
         .line-number-container {
             display: flex;
             align-items: center;
-            margin: 40px 0;
+            margin: 10px 0;
             position: relative;
         }
 
         .numbered-line {
             flex-grow: 1;
-            height: 1px;
-            background-color: #333;
-            max-width: 800px;
+            height: .05px;
+            background-color: #ffffff;
+            max-width: 500px;
         }
 
         .number-section {
@@ -102,28 +185,54 @@
         .vertical-divider {
             width: 1px;
             height: 20px;
-            background-color: #333;
+            background-color: #ffffff;
             margin: 0 10px;
         }
 
         .number {
             font-family: 'Courier New', monospace;
-            color: #333;
+            color: #ffffff;
             font-size: 16px;
         }
 
         .project-description {
             font-family: 'Courier New', monospace;
-            color: #333;
+            color: #ffffff;
             font-size: clamp(16px, 1.5vw, 24px);
             max-width: 600px;
             margin-top: 40px;
         }
 
+        /* Pictures */
+        .content-container {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .number-and-line {
+            display: flex;
+            align-items: center;
+            min-width: fit-content; /* Ensure number doesn't shrink */
+        }
+
+        .project-images {
+            display: flex;
+            gap: 20px;
+            margin-left: auto; /* Push images to the right */
+        }
+
+        .project-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
         /* Social Links & Signature */
         .bottom-signature {
             position: absolute;
-            color: #333;
+            color: #ffffff;
             bottom: clamp(20px, 5vh, 60px);
             right: clamp(20px, 5vw, 100px);
             font-size: clamp(14px, 4vw, 25px);
@@ -141,7 +250,7 @@
             width: 24px;
             height: 24px;
             opacity: 0.8;
-            color: #333;
+            color: #ffffff;
             transition: opacity 0.3s ease;
         }
 
@@ -149,15 +258,9 @@
             opacity: 1;
         }
 
-        /* Animations */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 29ch }
-        }
-
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #333 }
+            50% { border-color: #ffffff }
         }
 
         @keyframes fadeIn {
@@ -170,26 +273,79 @@
             border-right: none;
         }
 
+        /* Mobile Styling */
+
+        /* Remove the duplicate typing animation and combine into one */
+        @keyframes typing {
+            from { 
+                width: 0;
+            }
+            to { 
+                width: 29ch; /* Keep the character count */
+            }
+        }
+
+/* Mobile styles */
+/* Styles for narrow screens (max-width: 768px) */
+/* Narrow screen adjustments */
+@media screen and (max-width: 768px) {
+    h1 {
+        white-space: normal; /* Allow text to wrap */
+        width: 100%; /* Ensure full width for wrapping */
+        max-width: 100%; /* Typing animation still works with max-width set to 100% */
+        padding: 0 10px;
+    }
+}
     </style>
 </head>
 <body>
+     <!-- Add video right after body tag -->
+     <video autoplay muted loop playsinline class="background-video">
+        <source src="Video2.mp4" type="video/mp4">
+    </video>
+
     <div class="landing-section">
         <h1>Hi, this is Anna-Julia Storch</h1>
         <p>I'm the CEO and Cofounder of Dryft, an SF-based AI startup backed by Neo and General Catalyst.</p>
         <div class="line"></div>  <!-- Added horizontal line -->
     </div>
 
-    <!-- Add this new section -->
-    <div class="project-section">
-        <h2 class="project-title">Hard things I did</h2>
-        <div class="line-number-container">
-            <div class="numbered-line"></div>
-            <div class="number-section">
-                <div class="vertical-divider"></div>
-                <div class="number">01</div>
+    <div class="page-container">
+        <!-- Left column -->
+        <div class="left-column">
+            <div class="text-section">
+                <h2 class="project-title">Hard things I did</h2>
+                <div class="line-number-container">
+                    <div class="numbered-line"></div>
+                    <div class="number-section">
+                        <div class="vertical-divider"></div>
+                        <div class="number">01</div>
+                    </div>
+                </div>
+                <p class="project-description">Skiing.</p>
+            </div>
+    
+            <div class="text-section">
+                <h2 class="project-title">Things I care about</h2>
+                <div class="line-number-container">
+                    <div class="numbered-line"></div>
+                    <div class="number-section">
+                        <div class="vertical-divider"></div>
+                        <div class="number">02</div>
+                    </div>
+                </div>
+                <p class="project-description">Old stuff....</p>
             </div>
         </div>
-        <p class="project-description">Skiing.</p>
+    
+        <!-- Right column -->
+        <div class="right-column">
+            <div class="images-wrapper">
+                <img src="Skiing.jpeg" alt="Skiing image 1" class="project-image">
+                <img src="van.JPG" alt="Skiing image 2" class="project-image">
+                <img src="curio.jpeg" alt="Skiing image 3" class="project-image">
+            </div>
+        </div>
     </div>
 
     <div class="social-links">
@@ -226,5 +382,6 @@
             document.querySelector('h1').classList.add('typing-done');
         }, 3500);
     </script>
+    
 </body>
 </html>
