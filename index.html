@@ -11,23 +11,14 @@
             min-height: 300vh;
             margin: 0;
             position: relative;
-            background-image: url('Background2.svg');
+            /* Updated background styles */
+            background-image: url('Background3.svg'); /* Replace with your image path */
+            background-attachment: fixed;
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            background-position: center top;
         }
 
-        .background-video {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            object-fit: cover;
-        }
       
 
         .landing-section {
@@ -137,7 +128,7 @@
             align-items: center;
             justify-content: center;
             position: sticky;
-            top: 80px; /* Keep images in view while scrolling */
+            /* top: 80px; /* Keep images in view while scrolling */
         }
 
         .project-image {
@@ -299,10 +290,6 @@
     </style>
 </head>
 <body>
-     <!-- Add video right after body tag -->
-     <video autoplay muted loop playsinline class="background-video">
-        <source src="Video2.mp4" type="video/mp4">
-    </video>
 
     <div class="landing-section">
         <h1>Hi, this is Anna-Julia Storch</h1>
