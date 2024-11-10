@@ -11,16 +11,18 @@
             min-height: 300vh;
             margin: 0;
             position: relative;
-            /* Updated background styles */
-            background-image: url('Background3.svg'); /* Replace with your image path */
+            /*background-image: url('Background4.jpg');*/
+            background-image: url('Background5.jpg');
             background-attachment: fixed;
-            background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: 300%;
+            animation: bg-animation 20s infinite alternate cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-      
-
+        @keyframes bg-animation {
+            0% { background-position: left 0%; }
+            100% { background-position: right 0%; }
+        }
         .landing-section {
             height: 100vh;
             display: flex;
