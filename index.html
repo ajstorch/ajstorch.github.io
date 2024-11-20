@@ -11,18 +11,19 @@
             min-height: 300vh;
             margin: 0;
             position: relative;
-            /*background-image: url('Background4.jpg');*/
-            background-image: url('Background5.jpg');
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-size: 300%;
-            animation: bg-animation 10s infinite alternate cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        @keyframes bg-animation {
-            0% { background-position: left 0%; }
-            100% { background-position: right 0%; }
+        /* Gradient background styles */
+        #gradient-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000;
         }
+
         .landing-section {
             height: 100vh;
             display: flex;
@@ -30,22 +31,22 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative; /* Added to help with absolute positioning */
-            padding: 0 20px; /* Add padding for mobile */
+            position: relative;
+            padding: 0 20px;
         }
 
         h1 {
-        color: #ffffff;
-        margin: 0;
-        display: inline-block;
-        font-size: clamp(32px, 4vw, 64px);
-        max-width: 100%;
-        border-right: .15em solid #ffffff;
-        white-space: nowrap;
-        overflow: hidden;
-        width: fit-content;
-        animation: typing 3.5s steps(29, end), blink-caret .75s step-end infinite;
-        align-self: center;
+            color: #ffffff;
+            margin: 0;
+            display: inline-block;
+            font-size: clamp(32px, 4vw, 64px);
+            max-width: 100%;
+            border-right: .15em solid #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            width: fit-content;
+            animation: typing 3.5s steps(29, end), blink-caret .75s step-end infinite;
+            align-self: center;
         }
 
         p {
@@ -67,8 +68,8 @@
             height: 0.5px;
             background-color: #ffffff;
             margin: 100px 0;
-            position: relative;  /* Changed from absolute */
-            align-self: center;  /* Center the line */
+            position: relative;
+            align-self: center;
         }
 
         .project-sections-container {
@@ -83,43 +84,29 @@
         .right-content {
             flex: 1;
             padding-right: clamp(80px, 10vw, 120px);
-            margin-top: 80px; /* Align with first title */
+            margin-top: 80px;
         }
 
         .section-item {
             margin-bottom: 100px;
         }
 
-        .images-wrapper {
-            background-color: white;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            justify-content: center;
-            margin-top: 200px;
-        }
-
-        /* Project Section Styles */
         .page-container {
-            display: flex; /* Create two main columns */
+            display: flex;
             padding: 80px clamp(80px, 10vw, 120px);
             gap: 40px;
         }
 
-        /* Left column with all text content */
         .left-column {
             flex: 1;
         }
 
-        /* Right column with images */
         .right-column {
             flex: 1;
         }
 
         .text-section {
-            margin-bottom: 200px; /* Space between text sections */
+            margin-bottom: 200px;
         }
 
         .images-wrapper {
@@ -131,16 +118,7 @@
             align-items: center;
             justify-content: center;
             position: sticky;
-            /* top: 80px; /* Keep images in view while scrolling */
         }
-
-        .project-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-/* Keep your existing styles for project-title, line-number-container, etc. */
 
         .project-image {
             width: 200px;
@@ -197,7 +175,6 @@
             margin-top: 40px;
         }
 
-        /* Pictures */
         .content-container {
             display: flex;
             gap: 40px;
@@ -207,23 +184,15 @@
         .number-and-line {
             display: flex;
             align-items: center;
-            min-width: fit-content; /* Ensure number doesn't shrink */
+            min-width: fit-content;
         }
 
         .project-images {
             display: flex;
             gap: 20px;
-            margin-left: auto; /* Push images to the right */
+            margin-left: auto;
         }
 
-        .project-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        /* Social Links & Signature */
         .bottom-signature {
             position: absolute;
             color: #ffffff;
@@ -262,52 +231,45 @@
             to { opacity: 1 }
         }
 
-        /* Cursor removal after typing */
         h1.typing-done {
             border-right: none;
         }
 
-        /* Mobile Styling */
-
-        /* Remove the duplicate typing animation and combine into one */
         @keyframes typing {
             from { 
                 width: 0;
             }
             to { 
-                width: 29ch; /* Keep the character count */
+                width: 29ch;
             }
         }
 
-/* Mobile styles */
-/* Styles for narrow screens (max-width: 768px) */
-/* Narrow screen adjustments */
-@media screen and (max-width: 768px) {
-    h1 {
-        white-space: normal; /* Allow text to wrap */
-        width: 100%; /* Ensure full width for wrapping */
-        max-width: 100%; /* Typing animation still works with max-width set to 100% */
-        padding: 0 10px;
-    }
-}
+        @media screen and (max-width: 768px) {
+            h1 {
+                white-space: normal;
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
+            }
+        }
     </style>
 </head>
 <body>
+    <canvas id="gradient-canvas"></canvas>
 
     <div class="landing-section">
         <h1>Hi, this is Anna-Julia Storch</h1>
         <p>I'm the CEO and Cofounder of Dryft, an SF-based AI startup backed by Neo and General Catalyst.
 
-        My primary goal in life is to be as useful as possible. I do not believe you need to „enjoy the ride“. You just need to be proud of what you did. 
+        My primary goal in life is to be as useful as possible. I do not believe you need to „enjoy the ride". You just need to be proud of what you did. 
         </p>
-        <div class="line"></div>  <!-- Added horizontal line -->
+        <div class="line"></div>
 
-        <p> I grew up competing in Alpine Ski Racing internationally for many years while living hundreds of kilometers away from the alps. Showing others what is possible even if you don’t have the perfect/typical background is what drives me. Back when I was a ski racer and now in entrepreneurship. I've helped build up multiple entrepreneurial ventures from 0 to 1. For example, I was one of the first 2 people joining Kyte and I also founded a new business line for a multinational company with multi-million dollar revenues as my first full-time job.I have endless curiosity and love meeting ultra ambitious and unique (!) individuals with a sense of urgency.
+        <p> I grew up competing in Alpine Ski Racing internationally for many years while living hundreds of kilometers away from the alps. Showing others what is possible even if you don't have the perfect/typical background is what drives me. Back when I was a ski racer and now in entrepreneurship. I've helped build up multiple entrepreneurial ventures from 0 to 1. For example, I was one of the first 2 people joining Kyte and I also founded a new business line for a multinational company with multi-million dollar revenues as my first full-time job.I have endless curiosity and love meeting ultra ambitious and unique (!) individuals with a sense of urgency.
         </p>
     </div>
 
     <div class="page-container">
-        <!-- Left column -->
         <div class="left-column">
             <div class="text-section">
                 <h2 class="project-title">Hard things I did</h2>
@@ -334,7 +296,6 @@
             </div>
         </div>
     
-        <!-- Right column -->
         <div class="right-column">
             <div class="images-wrapper">
                 <img src="Skiing.jpeg" alt="Skiing image 1" class="project-image">
@@ -351,14 +312,12 @@
     </div>
 
     <div class="social-links">
-        <!-- GitHub -->
         <a href="https://github.com/ajstorch" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
             </svg>
         </a>
 
-        <!-- LinkedIn -->
         <a href="https://linkedin.com/in/ajstorch" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -367,7 +326,6 @@
             </svg>
         </a>
 
-        <!-- Twitter/X -->
         <a href="https://twitter.com/annajuliastorch" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
                 <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
@@ -384,6 +342,79 @@
             document.querySelector('h1').classList.add('typing-done');
         }, 3500);
     </script>
+
+<script>
+    // Typing animation
+    setTimeout(() => {
+        document.querySelector('h1').classList.add('typing-done');
+    }, 3500);
+
+    // Gradient background animation
+    const canvas = document.getElementById('gradient-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Blob {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.radius = Math.random() * 300 + 100;
+            this.dx = (Math.random() - 0.5) * 0.5;
+            this.dy = (Math.random() - 0.5) * 0.5;
+            this.angle = Math.random() * 360;
+            this.color = `hsl(${Math.random() * 60 + 240}, 70%, ${Math.random() * 20 + 20}%)`;
+        }
+
+        update() {
+            if (this.x + this.radius > canvas.width || this.x - this.radius < 0) this.dx *= -1;
+            if (this.y + this.radius > canvas.height || this.y - this.radius < 0) this.dy *= -1;
+            
+            this.x += this.dx;
+            this.y += this.dy;
+            this.angle += 0.1;
+        }
+
+        draw() {
+            const gradient = ctx.createRadialGradient(
+                this.x, this.y, 0,
+                this.x, this.y, this.radius
+            );
+            
+            gradient.addColorStop(0, this.color);
+            gradient.addColorStop(1, 'transparent');
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Create blobs
+    const blobs = Array.from({ length: 4 }, () => new Blob());
+
+    // Animation loop
+    function animate() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        blobs.forEach(blob => {
+            blob.update();
+            blob.draw();
+        });
+        
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
     
 </body>
 </html>
